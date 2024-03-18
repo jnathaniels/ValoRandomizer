@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'Valorant';
+  src: url('../../fonts/Valorant.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+  font:
+    14px 'Valorant',
+    Arial,
+    sans-serif;
+}
+
+/* Hide the default checkbox */
+input[type='checkbox'] {
+  display: none;
+}
+
+label > input[type='checkbox'] {
+  display: none;
+}
+
+/* Create a new custom checkbox */
+label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  background: #fff;
+}
+
+/* Style for checked state */
+label:has(input[type='checkbox']:checked)::before {
+  background: #ff6363;
+}
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
