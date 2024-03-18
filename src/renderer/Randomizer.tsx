@@ -40,7 +40,7 @@ export default function Randomizer() {
     fetchAll();
   });
 
-  function RollRandomNum() {
+  function Roll() {
     setRolling(true);
     if (
       agents !== null &&
@@ -49,16 +49,24 @@ export default function Randomizer() {
       gunBuddies !== null
     ) {
       const intervalId = setInterval(() => {
-        setRandomAgent(Math.floor(Math.random() * agents.length));
-        setRandomWeapon(Math.floor(Math.random() * weapons.length));
-        setRandomWeaponSkin(Math.floor(Math.random() * weaponSkins.length));
-        setRandomGunBuddy(Math.floor(Math.random() * gunBuddies.length));
+        if (agents && agents.length > 0) {
+          setRandomAgent(Math.floor(Math.random() * agents.length));
+        }
+        if (weapons && weapons.length > 0) {
+          setRandomWeapon(Math.floor(Math.random() * weapons.length));
+        }
+        if (weaponSkins && weaponSkins.length > 0) {
+          setRandomWeaponSkin(Math.floor(Math.random() * weaponSkins.length));
+        }
+        if (gunBuddies && gunBuddies.length > 0) {
+          setRandomGunBuddy(Math.floor(Math.random() * gunBuddies.length));
+        }
       }, 100); // Change the image every x-ms
 
       setTimeout(() => {
         clearInterval(intervalId); // Stop changing the image after some time
         setRolling(false);
-      }, 3000);
+      }, 2000);
     }
   }
 
@@ -69,9 +77,9 @@ export default function Randomizer() {
           className="bg-valorant-red min-w-32 border border-white text-white font-bold p-2 rounded-lg"
           type="button"
           disabled={rolling === true}
-          onClick={RollRandomNum}
+          onClick={Roll}
         >
-          {rolling === null ? 'Rolling...' : 'Roll'}
+          {rolling === true ? 'Rolling...' : 'Roll'}
         </button>
         <div>
           <label htmlFor="useSkins">
@@ -80,7 +88,7 @@ export default function Randomizer() {
               id="useSkins"
               type="checkbox"
             />
-            <span>Roll with Skins</span>
+            <span>With Skins</span>
           </label>
         </div>
       </div>
